@@ -21,7 +21,7 @@ export function App() {
       <GlobalStyles />
       {token ? <HeaderLogged /> : <HeaderLoggedOut />}
       {token ? <HomeLogged /> : <HomeLoggedOut />}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

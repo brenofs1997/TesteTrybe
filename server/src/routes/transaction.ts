@@ -1,4 +1,5 @@
 import { FastifyInstance } from "fastify/types/instance"
+import moment from "moment"
 import { z } from "zod"
 import { prisma } from "../lib/prisma"
 import { authenticate } from "../plugins/authenticate"
@@ -28,44 +29,53 @@ export async function transactionRoutes(fastify: FastifyInstance) {
         return transactions;
     })
 
-    fastify.get('/findtransactionsbyfilter/:accountId/:dateFilter/:transactionType', { onRequest: [authenticate] }, async (request, reply) => {
+    fastify.get('/findtransactionsbyfilter', { onRequest: [authenticate] }, async (request, reply) => {
 
         let transactions: any = [];
-       
-        const { accountId, dateFilter, transactionType } = request.params as any;
+        console.log(request.query);
 
-        if (!dateFilter && transactionType === 'cash-in') {
+        const { accountId, dateFilter, transactionType } = request.query as any;
+        console.log(dateFilter.length);
+
+        if (dateFilter.length !== 0 && transactionType === 'cash-in') {
+            console.log('1');
             transactions = await prisma.transaction.findMany({
                 where: {
-                    creditedAccountId: accountId,
-                    createdAt: dateFilter,
+                    creditedAccountId: accountId
                 },
 
             })
+
+            transactions = transactions.filter(transaction => moment(transaction.createdAt).format("YYYY/MM/DD") == dateFilter);
         }
-        
-        if (!dateFilter && transactionType === 'cash-out') {
+
+        if (dateFilter.length !== 0 && transactionType === 'cash-out') {
+            console.log('11');
             transactions = await prisma.transaction.findMany({
                 where: {
                     debitedAccountId: accountId,
-                    createdAt: dateFilter,
                 },
 
             })
+
+            transactions = transactions.filter(transaction => moment(transaction.createdAt).format("YYYY/MM/DD") == dateFilter);
         }
-        console.log(dateFilter.lenght === 0);
-        
-        if (dateFilter.lenght === 0 && transactionType === 'cash-in') {
-            console.log('ohe aq 1 ' + accountId);
+
+
+        if (dateFilter.length === 0 && transactionType === 'cash-in') {
+            console.log('111');
             transactions = await prisma.transaction.findMany({
                 where: {
                     creditedAccountId: accountId,
                 },
 
             })
+
+
         }
 
-        if (dateFilter && transactionType === 'cash-out') {
+        if (dateFilter.length === 0 && transactionType === 'cash-out') {
+            console.log('1111');
             transactions = await prisma.transaction.findMany({
                 where: {
                     debitedAccountId: accountId,
@@ -75,13 +85,21 @@ export async function transactionRoutes(fastify: FastifyInstance) {
             })
         }
 
-        if (!dateFilter && transactionType) {
+        if (dateFilter.length !== 0 && transactionType.length === 0) {
+            console.log('11111');
             transactions = await prisma.transaction.findMany({
                 where: {
-                    createdAt: dateFilter
+                    OR: [
+                        {
+                            debitedAccountId: accountId,
+                        },
+                        { creditedAccountId: accountId, },
+                    ],
                 },
 
             })
+
+            transactions = transactions.filter(transaction => moment(transaction.createdAt).format("YYYY/MM/DD") == dateFilter);
         }
         console.log(transactions);
 

@@ -89,8 +89,7 @@ export function TransferModal({ visible, onClose }: OrderModalProps) {
           </InputBlock>
           <Actions >
             <button type="submit" className="primary">
-              <span>👨‍🍳</span>
-              <strong>Iniciar Produção</strong>
+              <strong>Transferir</strong>
             </button>
           </Actions>
         </form>

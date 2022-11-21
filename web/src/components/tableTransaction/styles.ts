@@ -186,7 +186,13 @@ export const OrderDetails = styled.div`
  border-radius: var(--button_radius);
  background: var(--button_outline_color);
 }
-
+.buttonContainer{
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center;
+  width:100%;
+}
 .button_top {
 
  box-sizing: border-box;
