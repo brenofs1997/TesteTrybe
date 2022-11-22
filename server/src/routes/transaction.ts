@@ -29,7 +29,7 @@ export async function transactionRoutes(fastify: FastifyInstance) {
         return transactions;
     })
 
-    fastify.get('/findtransactionsbyfilter', { onRequest: [authenticate] }, async (request, reply) => {
+    fastify.get('/findtransactionsbyfilter',  { onRequest: [authenticate] }, async (request, reply) => {
 
         let transactions: any = [];
         console.log(request.query);

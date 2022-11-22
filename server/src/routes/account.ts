@@ -20,6 +20,23 @@ export async function accountRoutes(fastify: FastifyInstance) {
 
         return account;
     })
+    fastify.get('/searchbalance/:accountId', { onRequest: [authenticate] }, async (request, reply) => {
+
+        const accountParam = z.object({
+            accountId: z.string()
+        })
+
+        const { accountId } = accountParam.parse(request.params);
+
+        let account = await prisma.account.findUnique({
+            where: {
+                id: accountId
+            }
+        })
+
+
+        return account?.balance;
+    })
     fastify.put('/transferbalance', { onRequest: [authenticate] }, async (request, reply) => {
 
         const accountBody = z.object({
@@ -40,7 +57,10 @@ export async function accountRoutes(fastify: FastifyInstance) {
                 username: userNameDebit
             }
         })
+
+
         if (userCredit) {
+
             let account = await prisma.account.update({
                 where: {
                     id: userCredit.accountId
