@@ -30,12 +30,11 @@ export function TransferModal({ visible, onClose }: OrderModalProps) {
 
     await api.get(`searchbalance/${userAccountId}`,config)
     .then((resp) => {
-      oldBalance=resp.data.balance
+      oldBalance=resp.data
     }).catch(() => {
       alert('Internal server error');
     })
 
-    console.log(oldBalance);
     if (usernamecredit == localUsername) {
       alert('Você não pode transferir para si mesmo');
     }

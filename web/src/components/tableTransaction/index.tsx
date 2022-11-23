@@ -37,7 +37,6 @@ export function TableTransaction() {
       headers: { Authorization: `Bearer ${token}` }
     };
 
-    //api.get(`/transactions?minDate=${dmin}&maxDate=${dmax}`)
     api.get(`/findtransactionsbyfilter?accountId=${userAccountId}&dateFilter=${new Date(minDate).toLocaleDateString('zh-Hans-CN')}&transactionType=${transactionType}`, config)
       .then(response => {
         setTransaction(response.data)
@@ -61,7 +60,6 @@ export function TableTransaction() {
       headers: { Authorization: `Bearer ${token}` }
     };
 
-    //api.get(`/transactions?minDate=${dmin}&maxDate=${dmax}`)
     api.get(`/transactions/${userAccountId}`, config)
       .then(response => {
         setTransaction(response.data)
