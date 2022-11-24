@@ -53,67 +53,7 @@ export const ModalBody = styled.div`
   }
 `;
 
-export const OrderDetails = styled.div`
-  margin-top: 32px;
 
-  > strong {
-    font-weight: 500;
-    font-size: 14px;
-    opacity: 0.8;
-  }
-
-  .order-items {
-    margin-top: 16px;
-
-    .item {
-      display: flex;
-
-      & + .item{
-        margin-top: 16px;
-      }
-
-      img {
-        border-radius: 6px;
-      }
-
-      .quantity {
-        font-size: 14px;
-        color: #666;
-        display: block;
-        min-width: 20px;
-        margin-left: 12px;
-      }
-
-      .product-details {
-        margin-left: 4px;
-
-        strong {
-          display: block;
-          margin-bottom: 4px;
-        }
-
-        span {
-          font-size: 14px;
-          color: #666;
-        }
-      }
-    }
-  }
-
-  .total {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 24px;
-
-    span {
-      font-weight: 500;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-  }
-`;
 
 export const Actions = styled.div`
   display: flex;
@@ -143,14 +83,15 @@ export const Actions = styled.div`
 `;
 
 export const InputBlock = styled.div`
-font-size: 14px;
+      font-size: 14px;
       letter-spacing: -.24px;
       border: solid 1px #eee;
-      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       padding: 18px 11px;
       border-radius: 5px;
       width: 100%;
       color: #666;
-      -webkit-appearance: none;
+      display: flex;
+      gap: 12px;
+      flex-direction: column
 `;

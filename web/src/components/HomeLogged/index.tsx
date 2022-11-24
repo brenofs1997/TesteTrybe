@@ -3,6 +3,10 @@ import { Container, Content } from './styles';
 import api from '../../services/api';
 import { TransferModal } from '../TransferModal';
 import { TableTransaction } from '../tableTransaction';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+import { formactCurrency } from '../../utils/formatCurrency';
 
 interface User {
   id: string,
@@ -13,23 +17,32 @@ interface User {
 
 interface Account {
   id: string,
-  balance: number,
+  balance: number | 0,
 }
 
 export function HomeLogged() {
   const token = localStorage.getItem('token');
   let username = localStorage.getItem('username');
   let userAccountId = localStorage.getItem('accountId');
-  const [account, setAccount] = useState<Account>();
+  const [account, setAccount] = useState<Account | any>();
+
+  const min = new Date(new Date().setDate(new Date().getDate()));
+
+
+  const [minDate, setMinDate] = useState(min);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const [dataVisible, setdataVisible] = useState(true);
+
   function handleOpenModal() {
     setIsModalVisible(true);
+    setdataVisible(false);
   }
 
   function handleCloseModal() {
     setIsModalVisible(false);
+    setdataVisible(true);
   }
 
   const config = {
@@ -53,11 +66,9 @@ export function HomeLogged() {
           onClose={handleCloseModal}
         />
 
-
-
         <div className="saldo-container">
           <div className="saldo-content">
-            <span>R$ {account?.balance}</span>
+            <span>{formactCurrency(account?.balance)}</span>
           </div>
 
           <div className="saldo-buttons">
@@ -67,9 +78,9 @@ export function HomeLogged() {
             </button>
           </div>
         </div>
-        <TableTransaction/>
+        { dataVisible ? <DatePicker  dateFormat={"dd/MM/yyyy"} selected={minDate} onChange={(date: Date) => setMinDate(date)} />: null }
 
-
+        <TableTransaction datafilter = {minDate}/>
       </Content>
     </Container>
 

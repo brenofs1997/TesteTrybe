@@ -14,7 +14,7 @@ export function HeaderLoggedOut() {
         <div className="page-details">
           <img onClick={home} src={logo} alt="logo" />
         </div>
-        <a href="/register">LOGIN/REGISTER</a>
+        <a href="/register">LOGIN/CADASTRO</a>
       </Content>
     </Container>
   );

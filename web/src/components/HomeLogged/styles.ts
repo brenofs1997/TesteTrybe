@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
+export const Container = styled.div`
   background: #fff;
   display: flex;
   justify-content: center;
@@ -8,8 +8,8 @@ export const Container = styled.header`
   height: 800px;
 `;
 
-export const Content = styled.header`
-  width: 150px;
+export const Content = styled.div`
+  width: 190px;
   max-width: 1216px;
   align-items: center;
   justify-content: center;
@@ -49,39 +49,29 @@ export const Content = styled.header`
 }
 button {
   /* Variables */
- --button_radius: 0.75em;
- --button_color: #fcfcfc;
- --button_outline_color: #000000;
+  border: 2px solid black;
+  margin: 20px 40px;
+  padding: 10px 20px;
+  border-radius: 500px;
 
- font-size: 17px;
- margin:12px;
- font-weight: bold;
- border: none;
- border-radius: var(--button_radius);
- background: var(--button_outline_color);
+  background-color: white;
+  color: black;
+  font-weight: 700;
 }
 
 .button_top {
 
- box-sizing: border-box;
 
- border: 2px solid var(--button_outline_color);
- border-radius: var(--button_radius);
- padding: 0.75em 1.5em;
- background: var(--button_color);
- color: var(--button_outline_color);
- transform: translateY(-0.2em);
- transition: transform 0.1s ease;
 }
 
 button:hover .button_top {
   /* Pull the button upwards when hovered */
- transform: translateY(-0.33em);
+
 }
 
 button:active .button_top {
   /* Push the button downwards when pressed */
- transform: translateY(0);
+
 }
 
 `;

@@ -51,11 +51,9 @@ export function HeaderLogged() {
         </div>
         <div >
           <span className="title-name"> Olá, {username}</span>
-
-         
         </div>
 
-        <a onClick={logout}>LOGOUT</a>
+        <a onClick={logout}>SAIR</a>
       </Content>
     </Container>
   );

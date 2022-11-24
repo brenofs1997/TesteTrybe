@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
+export const Container = styled.div`
   background: #fff;
   display: flex;
   justify-content: center;
@@ -8,7 +8,7 @@ export const Container = styled.header`
   align-items: center;
 `;
 
-export const Content = styled.header`
+export const Content = styled.div`
   width: 100%;
   height: 100%;
   max-width: 1216px;

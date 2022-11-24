@@ -8,7 +8,7 @@ export const Container = styled.header`
   align-items: center;
 `;
 
-export const Content = styled.header`
+export const Content = styled.div`
   width: 100%;
   max-width: 1216px;
   align-items: center;

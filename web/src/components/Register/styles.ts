@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
+export const Container = styled.div`
   background: #fff;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@ export const Container = styled.header`
 `;
 
 
-export const LineDivisor = styled.header`
+export const LineDivisor = styled.div`
   width: 1px;
     min-height: 285px;
     margin: 0 7.65vw;

@@ -14,24 +14,29 @@ export const Overlay = styled.div`
 `;
 
 export const ModalBody = styled.div`
-.dsmeta-card {
+.transfer-card {
   background-color: #283142;
   border-radius: 10px;
   padding: 30px 10px;
 }
 
-.dsmeta-sales-title {
-  color: #676fff;
+.transfer-title {
+  color: black;
   font-size: 24px;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
-.dsmeta-form-control-container {
+.transfer-radio {
+  display: flex;
+  gap: 12px;
+}
+
+.transfer-form-control-container {
   margin-bottom: 16px;
   max-width: 300px;
 }
 
-.dsmeta-form-control {
+.transfer-form-control {
   width: 100%;
   height: 46px;
   background-color: #1b2531;
@@ -42,50 +47,55 @@ export const ModalBody = styled.div`
   font-size: 18px;
 }
 
-.dsmeta-sales-table {
+.transfer-table {
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
+  border: 1px solid #384459;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.dsmeta-sales-table thead {
+.transfer-table thead {
   height: 55px;
   font-size: 16px;
-  color: #e9e9e9;
+  color: black;
   font-weight: 700;
 }
 
-.dsmeta-sales-table tbody {
+.transfer-table tbody {
   font-size: 14px;
   font-weight: 400;
-  color: #cfcfcf;
+  color: #1b2531;
   text-align: center;
 }
 
-.dsmeta-sales-table tbody tr {
+.transfer-table tbody tr {
   height: 74px;
   border-top: 1px solid #5f6e82;
 }
 
-.dsmeta-sales-table tbody tr:hover>td {
-  background-color: #384459;
+.transfer-table tbody tr:hover>td {
+  background-color: #9aaabe;
 }
 
-.dsmeta-sales-table tbody tr:nth-child(odd) {
-  background-color: #242c3b;
+.transfer-table tbody tr:nth-child(odd) {
+  background-color: white;
 }
 
-.dsmeta-red-btn-container {
+.transfer-red-btn-container {
   display: flex;
   justify-content: center;
 }
 
 .show576 {
-  display: none;
+  display: flex;
 }
 
 .show992 {
-  display: none;
+  display: flex;
 }
 
 @media (min-width: 576px) {
@@ -93,15 +103,15 @@ export const ModalBody = styled.div`
       display: table-cell;
   }
 
-  .dsmeta-card {
+  .transfer-card {
       padding: 35px;
   }
 
-  .dsmeta-sales-table tbody tr {
+  .transfer-table tbody tr {
       height: 55px;
   }
 
-  .dsmeta-sales-table tbody {
+  .transfer-table tbody {
       font-size: 18px;
   }
 }
@@ -115,106 +125,40 @@ export const ModalBody = styled.div`
 
 export const OrderDetails = styled.div`
   margin-top: 32px;
-
+  display: none;
   > strong {
     font-weight: 500;
     font-size: 14px;
     opacity: 0.8;
   }
 
-  .order-items {
-    margin-top: 16px;
-
-    .item {
-      display: flex;
-
-      & + .item{
-        margin-top: 16px;
-      }
-
-      img {
-        border-radius: 6px;
-      }
-
-      .quantity {
-        font-size: 14px;
-        color: #666;
-        display: block;
-        min-width: 20px;
-        margin-left: 12px;
-      }
-
-      .product-details {
-        margin-left: 4px;
-
-        strong {
-          display: block;
-          margin-bottom: 4px;
-        }
-
-        span {
-          font-size: 14px;
-          color: #666;
-        }
-      }
-    }
-  }
-
-  .total {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 24px;
-
-    span {
-      font-weight: 500;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-  }
   button {
-  /* Variables */
- --button_radius: 0.75em;
- --button_color: #fcfcfc;
- --button_outline_color: #000000;
+    border: 2px solid black;
+  margin: 20px 40px;
+  padding: 10px 20px;
+    display: none;
+  border-radius: 500px;
 
- font-size: 17px;
- margin:12px;
- font-weight: bold;
- border: none;
- border-radius: var(--button_radius);
- background: var(--button_outline_color);
+  background-color: white;
+  color: red;
+  font-weight: 700;
 }
 .buttonContainer{
-  display:flex;
-  flex-direction: row;
-  align-items:center;
-  justify-content: center;
-  width:100%;
+
+
 }
 .button_top {
+  border: 2px solid black;
+  margin: 20px 40px;
+  padding: 10px 20px;
+  border-radius: 500px;
 
- box-sizing: border-box;
+  background-color: white;
+  color: black;
+  font-weight: 700;
 
- border: 2px solid var(--button_outline_color);
- border-radius: var(--button_radius);
- padding: 0.75em 1.5em;
- background: var(--button_color);
- color: var(--button_outline_color);
- transform: translateY(-0.2em);
- transition: transform 0.1s ease;
 }
 
-button:hover .button_top {
-  /* Pull the button upwards when hovered */
- transform: translateY(-0.33em);
-}
-
-button:active .button_top {
-  /* Push the button downwards when pressed */
- transform: translateY(0);
-}
 `;
 
 export const Actions = styled.div`
@@ -234,25 +178,15 @@ export const Actions = styled.div`
     gap:8px;
   }
 
-  .secondary {
-    padding: 14px 24px;
-    color: #D73035;
-    font-weight: bold;
-    border: 0;
-    background: transparent;
-    margin-top: 12px;
-  }
 `;
 
 export const InputBlock = styled.div`
 font-size: 14px;
       letter-spacing: -.24px;
       border: solid 1px #eee;
-      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       padding: 18px 11px;
       border-radius: 5px;
       width: 100%;
       color: #666;
-      -webkit-appearance: none;
 `;

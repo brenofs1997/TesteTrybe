@@ -28,6 +28,11 @@ export const Content = styled.div`
     }
   }
 
+  .title-name{
+    color: #fff;
+    font-size: 32px;
+  }
+
   a {
     line-height: 1.5;
     padding: 0.5rem 0.75rem;

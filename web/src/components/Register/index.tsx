@@ -1,4 +1,3 @@
-import { Footer } from "../Footer";
 import { FormRegister } from "../FormRegister";
 import { FormLogin } from "../FormLogin";
 import { HeaderLoggedOut } from '../HeaderLoggedOut';
@@ -16,7 +15,6 @@ export function Register() {
           <LineDivisor />
           <FormRegister />
         </Container>
-    
     </>
   )
 }
