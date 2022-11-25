@@ -17,7 +17,17 @@ export async function authRoutes(fastify: FastifyInstance) {
         })
 
         const { username, password } = createUserBody.parse(request.body);
-        console.log(request.body);
+        if (!username) {
+            return reply.status(400).send({
+                message: 'Campo username não pode ser vazio'
+            })
+        }
+        if (!password) {
+            return reply.status(400).send({
+                message: 'Campo senha não pode ser vazio'
+            })
+        }
+
 
         let user = await prisma.user.findUnique({
             where: {
@@ -27,7 +37,7 @@ export async function authRoutes(fastify: FastifyInstance) {
 
         if (!user) {
             return reply.status(400).send({
-                message: 'Username or password incorrect'
+                message: 'Username ou password incorreto'
             })
 
         }
@@ -36,7 +46,7 @@ export async function authRoutes(fastify: FastifyInstance) {
 
         if (!passwordMath) {
             return reply.status(400).send({
-                message: 'Password incorrect'
+                message: 'Senha incorreta'
             })
         }
 

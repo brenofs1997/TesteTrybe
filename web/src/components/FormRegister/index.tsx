@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React, { useState, FormEvent, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -12,13 +13,19 @@ export function FormRegister() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    try {
-      await api.post('users', { username, password })
-      toast.success('Cadastro realizado com sucesso!');
-      goBack('/');
-    } catch (error) {
-      toast.error('Erro no cadastro!');
-    }
+
+    await api.post('users', { username, password })
+      .then(() => {
+        toast.success('Cadastro realizado com sucesso!');
+        goBack('/');
+      }).catch((error) => {
+        let errorMenssage = '';
+        if (error instanceof AxiosError) {
+          errorMenssage = JSON.parse(error.response?.data.message)[0].message;
+          toast.error(errorMenssage);
+        }
+      })
+
   }
 
   return (

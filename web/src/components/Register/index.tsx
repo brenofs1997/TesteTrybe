@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FormRegister } from "../FormRegister";
 import { FormLogin } from "../FormLogin";
 import { HeaderLoggedOut } from '../HeaderLoggedOut';
@@ -8,6 +10,7 @@ export function Register() {
 
   return (
     <>
+      <ToastContainer />
       <GlobalStyles />
       <HeaderLoggedOut />
         <Container>

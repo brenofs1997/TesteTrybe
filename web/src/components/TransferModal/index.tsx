@@ -41,6 +41,7 @@ export function TransferModal({ visible, onClose }: OrderModalProps) {
       await api.put('transferbalance', { userNameCredit: usernamecredit, userNameDebit: localUsername, balanceValue: balance }, config)
         .then(() => {
           toast.success('Transferencia Realizada com Successo');
+          window.location.reload();
           onClose();
         }).catch(() => {
           toast.error('Erro na Transferencia!');

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Container, InputBlock } from './styles';
 import { toast } from 'react-toastify';
+import { AxiosError } from 'axios';
 
 
 export function FormLogin() {
@@ -19,8 +20,13 @@ export function FormLogin() {
         localStorage.setItem('accountId', JSON.parse(JSON.stringify(response.data)).accountId);
         localStorage.setItem('username',username);
         goBack('/');
-      }).catch(() => {
-        toast.error('Erro no Login!');
+      }).catch((error) => {
+        let errorMenssage = '';
+        if (error instanceof AxiosError) {
+          errorMenssage = error.response?.data.message
+
+          toast.error(errorMenssage);
+        }
       })
   }
 

@@ -9,9 +9,9 @@ export async function userRoutes(fastify: FastifyInstance) {
         const passwordPolicies = /(?=^.{8,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
     
         const createUserBody = z.object({
-            username: z.string().min(3, { message: "Must be 3 or more characters long" }),
+            username: z.string().min(3, { message: "Nome de usuário deve conter pelo menos 3 caracteres"}),
             password: z.string().regex(passwordPolicies, {
-                message: `Your password must contain at least (8 characters, 1 capital letter, 1 number)`
+                message: `Sua senha deve conter pelo menos (8 caracteres, 1 letra maiúscula, 1 numero )`
             })
         })
 
@@ -25,7 +25,7 @@ export async function userRoutes(fastify: FastifyInstance) {
 
         if (user) {
             return reply.status(400).send({
-                message: 'Username already Exists'
+                message: 'Username já existe'
             })
 
         }
@@ -105,12 +105,10 @@ export async function userRoutes(fastify: FastifyInstance) {
         })
 
         const { username } = userNameParam.parse(request.params);
-        console.log(request.params)
         let user = await prisma.user.findUnique({
             where: { username }
 
         })
-        console.log(user)
 
         return { ...user, password: undefined }
     })
@@ -132,7 +130,7 @@ export async function userRoutes(fastify: FastifyInstance) {
 
         if (!user) {
             return reply.status(404).send({
-                message: 'User incorrect'
+                message: 'Usuário incorreto'
             })
 
         }
