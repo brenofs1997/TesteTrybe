@@ -32,7 +32,7 @@ npx prisma migrate dev
 Para criar o container no Docker, rode o comando:
 ```bash
 docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD={senha do postgres} -d  postgres
-
+```
 Por fim para iniciar o servidor, rode o comando:
 ```bash
 npm run dev
